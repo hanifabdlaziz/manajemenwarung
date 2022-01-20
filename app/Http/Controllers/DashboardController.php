@@ -34,6 +34,18 @@ class DashboardController extends Controller
         return view('admin.logs', compact('logs'));
     }
 
+    public function barang(){
+        $logs = Activity::where('causer_id', auth()->id())->latest()->paginate(10);
+
+        return view('admin.barang.barang', compact('logs'));
+    }
+
+    public function pembayaran(){
+        $logs = Activity::where('causer_id', auth()->id())->latest()->paginate(10);
+
+        return view('admin.pembayaran.pembayaran', compact('logs'));
+    }
+
 	/**
 	* Store settings into database
 	*
@@ -78,7 +90,7 @@ class DashboardController extends Controller
             }
 
             $data['password'] = Hash::make($request->new_password);
-        } 
+        }
 
         // for update avatar
         if($request->avatar) {
@@ -88,10 +100,10 @@ class DashboardController extends Controller
                 unlink(storage_path('app/public/'.auth()->user()->avatar));
             }
         }
-        
+
         // update profile
         auth()->user()->update($data);
-        
+
         return redirect()->back()->with('success', 'Profile updated!');
     }
 
@@ -117,7 +129,7 @@ class DashboardController extends Controller
         }
 
         return '';
-        
+
     }
 
     public function delete_logs()

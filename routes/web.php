@@ -13,19 +13,21 @@ Route::group([
 	'as' => 'admin.'
 ], function(){
 	Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+	Route::get('/barang', [DashboardController::class, 'barang'])->name('barang');
+    Route::post('/barang/edit', [BarangController::class, 'barang.edit'])->name('edit');
+	Route::get('/pembayaran', [DashboardController::class, 'pembayaran'])->name('pembayaran');
 
 	Route::get('/logs', [DashboardController::class, 'activity_logs'])->name('logs');
 	Route::post('/logs/delete', [DashboardController::class, 'delete_logs'])->name('logs.delete');
-	
+
 	// Settings menu
 	Route::view('/settings', 'admin.settings')->name('settings');
 	Route::post('/settings', [DashboardController::class, 'settings_store'])->name('settings');
-	
+
 	// Profile menu
 	Route::view('/profile', 'admin.profile')->name('profile');
 	Route::post('/profile', [DashboardController::class, 'profile_update'])->name('profile');
-	Route::post('/profile/upload', [DashboardController::class, 'upload_avatar'])
-		->name('profile.upload');
+	Route::post('/profile/upload', [DashboardController::class, 'upload_avatar'])->name('profile.upload');
 
 	// Member menu
 	Route::get('/member', [UserController::class, 'index'])->name('member');

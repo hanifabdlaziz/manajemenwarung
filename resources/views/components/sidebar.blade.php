@@ -13,6 +13,20 @@
         url="{{ route('admin.dashboard') }}"
         active="{{ request()->routeIs('admin.dashboard') ? ' active' : '' }}"
     />
+
+    <x-nav-link
+        text="Barang"
+        icon="box"
+        url="{{ route('admin.barang') }}"
+        active="{{ request()->routeIs('admin.barang') ? ' active' : '' }}"
+    />
+
+    <x-nav-link
+        text="Pembayaran"
+        icon="money-bill"
+        url="{{ route('admin.pembayaran') }}"
+        active="{{ request()->routeIs('admin.pembayaran') ? ' active' : '' }}"    
+    />
     
     <hr class="sidebar-divider mb-0">
 
